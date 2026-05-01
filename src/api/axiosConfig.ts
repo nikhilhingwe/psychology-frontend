@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "https://psychology-backend-alpha.vercel.app";
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://psychology-backend-alpha.vercel.app";
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,

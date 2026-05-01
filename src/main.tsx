@@ -7,7 +7,8 @@ import { Toaster } from "react-hot-toast";
 
 // Configure axios base URL
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "https://psychology-backend-alpha.vercel.app";
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://psychology-backend-alpha.vercel.app";
 axios.defaults.baseURL = API_BASE_URL;
 
 // Add token to requests if available
