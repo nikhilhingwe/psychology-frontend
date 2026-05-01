@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import { loadStripe } from '@stripe/stripe-js'
-import { Heart, LogOut, CreditCard, Bell, CheckCircle, XCircle, Calendar } from 'lucide-react'
+import { Heart, LogOut, CreditCard, CheckCircle, XCircle, Calendar } from 'lucide-react'
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '')
 
 interface DashboardProps {
   user: any
+  setUser: (user: any) => void
 }
 
-export default function Dashboard({ user }: DashboardProps) {
+export default function Dashboard({ user, setUser }: DashboardProps) {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [currentMessage, setCurrentMessage] = useState<any>(null)
@@ -47,6 +48,7 @@ export default function Dashboard({ user }: DashboardProps) {
   const handleCancelSubscription = async () => {
     if (!confirm('Are you sure you want to cancel your subscription?')) return
     try {
+      const token = localStorage.getItem('token')
       await axios.post('/api/payment/cancel', {}, {
         headers: { Authorization: `Bearer ${token}` }
       })

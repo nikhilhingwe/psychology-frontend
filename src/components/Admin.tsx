@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
-import { Users, MessageSquare, Upload, TrendingUp, LogOut, RefreshCw, CreditCard, BarChart3, LayoutDashboard, FileSpreadsheet, Send, Activity, Loader2, Trash2, Edit } from 'lucide-react'
+import { Users, MessageSquare, Upload, TrendingUp, LogOut, RefreshCw, CreditCard, BarChart3, LayoutDashboard, FileSpreadsheet, Send, Activity, Loader2, Trash2 } from 'lucide-react'
 
 interface AdminProps {
   user: any
@@ -262,23 +262,6 @@ export default function Admin({ user }: AdminProps) {
     } catch (error) {
       console.error('Delete error:', error)
       toast.error('Failed to delete message')
-    }
-  }
-
-  const handleDeleteAllMessages = async () => {
-    if (!confirm('Are you sure you want to delete ALL messages? This cannot be undone.')) return
-    
-    try {
-      toast.loading('Deleting all messages...')
-      const token = localStorage.getItem('token')
-      await axios.delete('/api/admin/messages', { headers: { Authorization: `Bearer ${token}` } })
-      toast.dismiss()
-      toast.success('All messages deleted successfully')
-      fetchMessages()
-    } catch (error) {
-      toast.dismiss()
-      console.error('Delete error:', error)
-      toast.error('Failed to delete messages')
     }
   }
 

@@ -32,7 +32,7 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin setIsAuthenticated={setIsAuthenticated} setUser={setUser} />} />
         <Route 
           path="/dashboard" 
-          element={isAuthenticated ? <Dashboard user={user} /> : <Navigate to="/login" />} 
+          element={isAuthenticated ? <Dashboard user={user} setUser={setUser} /> : <Navigate to="/login" />} 
         />
         <Route 
           path="/admin" 
